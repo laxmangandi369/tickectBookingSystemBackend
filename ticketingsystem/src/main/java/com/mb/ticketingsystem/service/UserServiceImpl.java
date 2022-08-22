@@ -1,6 +1,7 @@
 package com.mb.ticketingsystem.service;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.validation.Valid;
 
@@ -32,7 +33,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User registerUser(SignupModel userSignup) {
-		if (userDao.findUserByEmail(userSignup.getEmail()) != null) {
+		if (userDao.findUserByEmail(userSignup.getEmail())!=null) {
 			throw new CustomException("User already registered with " + userSignup.getEmail() + " address.",
 					ErrorCode.RESOURCE_ALREADY_EXISTS);
 		} else {
@@ -51,11 +52,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User login(@Valid LoginModel user) {
+	public User login( LoginModel user) {
 		
 			User isRegistered = userDao.findUserByEmail(user.getEmail());
 			
-			if(isRegistered!=null)
+			if(isRegistered!=null && Objects.equals(isRegistered.getPassWord(), user.getPassword()))
 			{
 				return isRegistered;
 			}
