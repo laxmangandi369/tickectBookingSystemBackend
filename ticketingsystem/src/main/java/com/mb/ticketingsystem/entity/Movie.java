@@ -29,13 +29,27 @@ public class Movie {
 	private Long ratingRottenTomatoes;
 
 	@Column
-	private String time;
+	private String duration;
 
 	@Column
-	private Double price;
+	private Integer price;
 
-	@Column
-	private String movieDuration;
+	public String getDuration() {
+		return duration;
+	}
+
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
 
 	public String getName() {
 		return name;

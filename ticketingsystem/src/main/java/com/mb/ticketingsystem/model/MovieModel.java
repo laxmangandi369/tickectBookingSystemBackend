@@ -1,5 +1,7 @@
 package com.mb.ticketingsystem.model;
 
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.lang.NonNull;
 
 public class MovieModel {
@@ -11,6 +13,28 @@ public class MovieModel {
 	private String image_url;
 
 	private Long ratingRottenTomatoes;
+	
+	
+	private Integer price;
+	
+	@NotBlank
+	private String duration;
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
+	public String getDuration() {
+		return duration;
+	}
+
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
 
 	public String getName() {
 		return name;

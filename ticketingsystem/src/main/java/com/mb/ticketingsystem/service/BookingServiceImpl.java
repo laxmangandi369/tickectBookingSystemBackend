@@ -66,7 +66,7 @@ public class BookingServiceImpl implements BookingService {
 			}
 		}
 
-		Booking toAddBooking = new Booking();
+		Booking toAddBooking;
 		toAddBooking = mapper.map(bookingModel, Booking.class);
 		toAddBooking.setSeats(seat);
 		toAddBooking.setMovie(movie);
