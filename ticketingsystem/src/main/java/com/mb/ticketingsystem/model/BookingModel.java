@@ -10,11 +10,11 @@ public class BookingModel {
 	@NonNull
 	@Email
 	private String email;
-	@NonNull
+	
 	private Long movieId;
-	@NonNull
+	
 	private String[] seatNumbers;
-	@NonNull
+	
 	private String[] bookingSeats;
 
 	public String getCustomerName() {

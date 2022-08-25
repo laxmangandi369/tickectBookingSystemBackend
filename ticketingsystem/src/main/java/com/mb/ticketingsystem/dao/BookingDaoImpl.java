@@ -32,6 +32,7 @@ public class BookingDaoImpl implements BookingDao {
 		try {
 			return bookingRepository.save(booking);
 		} catch (Exception e) {
+			System.out.println(e);
 			throw new CustomException("error while booking with booking id " + booking.getBookingId(),
 					ErrorCode.INTERNAL_SERVER_ERROR);
 		}
