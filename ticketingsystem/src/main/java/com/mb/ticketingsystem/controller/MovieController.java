@@ -1,5 +1,6 @@
 package com.mb.ticketingsystem.controller;
 
+import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class MovieController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<SuccessResponse> saveMovies(@RequestBody MovieModel movieModel)
+	public ResponseEntity<SuccessResponse> saveMovies(@RequestBody @Valid MovieModel movieModel)
 	{
 		SuccessResponse response = new SuccessResponse();
 		response.setData(movieService.addMovie(movieModel));

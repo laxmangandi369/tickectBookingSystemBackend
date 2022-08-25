@@ -1,6 +1,5 @@
 package com.mb.ticketingsystem.entity;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,20 +15,27 @@ public class Movie {
 	@Column(name = "movieid")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long movieid;
-	
+
 	@Column
 	private String name;
-	
+
 	@Column
 	private String description;
-	
+
 	@Column
 	private String image_url;
-	
-	@Column(name="rottten_tomatos_rating")
+
+	@Column(name = "rottten_tomatos_rating")
 	private Long ratingRottenTomatoes;
-	
-	
+
+	@Column
+	private String time;
+
+	@Column
+	private Double price;
+
+	@Column
+	private String movieDuration;
 
 	public String getName() {
 		return name;
@@ -55,8 +61,6 @@ public class Movie {
 		this.image_url = image_url;
 	}
 
-
-
 	public Long getRatingRottenTomatoes() {
 		return ratingRottenTomatoes;
 	}
@@ -68,6 +72,5 @@ public class Movie {
 	public Long getId() {
 		return movieid;
 	}
-	
-	
+
 }

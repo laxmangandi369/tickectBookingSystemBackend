@@ -1,14 +1,25 @@
 package com.mb.ticketingsystem.model;
 
+import org.springframework.lang.NonNull;
 
 public class PlayModel {
-
+	@NonNull
 	private String name;
-	
+
 	private String description;
-	
+
 	private Long ratings;
-	
+	@NonNull
+	private String image_url;
+
+	public String getImage_url() {
+		return image_url;
+	}
+
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
+	}
+
 	private String duration;
 
 	public String getName() {
@@ -42,7 +53,5 @@ public class PlayModel {
 	public void setDuration(String duration) {
 		this.duration = duration;
 	}
-	
-	
 
 }

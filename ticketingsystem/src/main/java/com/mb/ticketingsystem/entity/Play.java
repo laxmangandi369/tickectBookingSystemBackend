@@ -8,23 +8,34 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="plays")
+@Table(name = "plays")
 public class Play {
 
 	@Id
-	@Column(name="playid")
+	@Column(name = "playid")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long playId;
-	
+
 	@Column
 	private String name;
-	
+
 	@Column
 	private String description;
-	
+
 	@Column
 	private Long ratings;
-	
+
+	@Column
+	private String image_url;
+
+	public String getImage_url() {
+		return image_url;
+	}
+
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
+	}
+
 	@Column
 	private String duration;
 
@@ -63,6 +74,5 @@ public class Play {
 	public Long getId() {
 		return playId;
 	}
-	
-	
+
 }

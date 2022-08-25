@@ -1,26 +1,28 @@
 package com.mb.ticketingsystem.model;
 
+import javax.validation.constraints.NotBlank;
+
 public class SeatModel {
+	@NotBlank
+	String seatNumber;
+	@NotBlank
+	Boolean isBooked;
+	@NotBlank
+	Long movieId;
 
-	Long seatId;
-	
-	Integer seatNumber;
-	
-	Boolean isBooked ;
-
-	public Long getSeatId() {
-		return seatId;
+	public Long getMovieId() {
+		return movieId;
 	}
 
-	public void setSeatId(Long seatId) {
-		this.seatId = seatId;
+	public void setMovieId(Long movieId) {
+		this.movieId = movieId;
 	}
 
-	public Integer getSeatNumber() {
+	public String getSeatNumber() {
 		return seatNumber;
 	}
 
-	public void setSeatNumber(Integer seatNumber) {
+	public void setSeatNumber(String seatNumber) {
 		this.seatNumber = seatNumber;
 	}
 
@@ -31,6 +33,5 @@ public class SeatModel {
 	public void setIsBooked(Boolean isBooked) {
 		this.isBooked = isBooked;
 	}
-	
-	
+
 }

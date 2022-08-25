@@ -12,7 +12,7 @@ import com.mb.ticketingsystem.repository.PlayRepository;
 
 @Service
 public class PlayDaoImpl implements PlayDao {
-	
+
 	@Autowired
 	private PlayRepository theatreRepository;
 
@@ -21,7 +21,7 @@ public class PlayDaoImpl implements PlayDao {
 		try {
 			return theatreRepository.findAll();
 		} catch (Exception e) {
-			throw new CustomException("error while retreving data",ErrorCode.INTERNAL_SERVER_ERROR);
+			throw new CustomException("error while retreving data", ErrorCode.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -39,7 +39,7 @@ public class PlayDaoImpl implements PlayDao {
 		try {
 			return theatreRepository.findById(id).get();
 		} catch (Exception e) {
-			throw new CustomException("canntot retrive id from database",ErrorCode.INTERNAL_SERVER_ERROR);
+			throw new CustomException("cannot retrive id " + id + " from database", ErrorCode.INTERNAL_SERVER_ERROR);
 		}
 	}
 

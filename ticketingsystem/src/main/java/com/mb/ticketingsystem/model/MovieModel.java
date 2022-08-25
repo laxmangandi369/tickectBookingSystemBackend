@@ -1,14 +1,15 @@
 package com.mb.ticketingsystem.model;
 
+import org.springframework.lang.NonNull;
+
 public class MovieModel {
-	
-	
+	@NonNull
 	private String name;
-	
+
 	private String description;
-	
+	@NonNull
 	private String image_url;
-	
+
 	private Long ratingRottenTomatoes;
 
 	public String getName() {
@@ -42,7 +43,5 @@ public class MovieModel {
 	public void setRatingRottenTomatoes(Long ratingRottenTomatoes) {
 		this.ratingRottenTomatoes = ratingRottenTomatoes;
 	}
-	
-	
-		
+
 }

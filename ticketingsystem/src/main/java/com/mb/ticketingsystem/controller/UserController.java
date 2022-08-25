@@ -16,6 +16,8 @@ import com.mb.ticketingsystem.model.SuccessResponse;
 import com.mb.ticketingsystem.service.UserService;
 import static com.mb.ticketingsystem.constants.UrlMapping.USER_URL;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping(USER_URL)
@@ -37,7 +39,7 @@ public class UserController {
 	}
 	
 	@PostMapping("register")
-	public ResponseEntity<SuccessResponse> registerUser(@RequestBody SignupModel signup)
+	public ResponseEntity<SuccessResponse> registerUser(@RequestBody @Valid SignupModel signup)
 	{
 		SuccessResponse response= new SuccessResponse();
 		response.setData(userService.registerUser(signup));
@@ -47,7 +49,7 @@ public class UserController {
 		return new ResponseEntity<>(response,HttpStatus.OK);		
 	}
 	@PostMapping("login")
-	public ResponseEntity<SuccessResponse> loginUser(@RequestBody LoginModel login)
+	public ResponseEntity<SuccessResponse> loginUser(@RequestBody @Valid  LoginModel login)
 	{
 		SuccessResponse response= new SuccessResponse();
 		response.setData(userService.login(login));

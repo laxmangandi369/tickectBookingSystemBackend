@@ -8,9 +8,7 @@ public class ErrorResponse {
 	private String message;
 	private int errorCode;
 	private String errorMessage;
-	
-	
-	
+
 	public ErrorResponse() {
 		super();
 	}
@@ -22,8 +20,6 @@ public class ErrorResponse {
 		this.errorCode = errorCode;
 		this.errorMessage = errorMessage;
 	}
-
-
 
 	public ErrorResponse(Date timestamp, String message, int errorCode) {
 		super();
@@ -63,7 +59,5 @@ public class ErrorResponse {
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
-	
-	
 
 }

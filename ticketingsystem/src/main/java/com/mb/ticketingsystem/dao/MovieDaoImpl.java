@@ -15,7 +15,7 @@ public class MovieDaoImpl implements MovieDao {
 
 	@Autowired
 	MovieRepository movieRepository;
-	
+
 	@Override
 	public List<Movie> getAllMovies() {
 		try {
@@ -30,7 +30,7 @@ public class MovieDaoImpl implements MovieDao {
 		try {
 			return movieRepository.save(movie);
 		} catch (Exception e) {
-			throw new CustomException("error while saving movie in database",ErrorCode.INTERNAL_SERVER_ERROR);
+			throw new CustomException("error while saving movie in database", ErrorCode.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -39,7 +39,7 @@ public class MovieDaoImpl implements MovieDao {
 		try {
 			return movieRepository.findById(id).get();
 		} catch (Exception e) {
-			throw new CustomException("error while fetching movie with id "+id, ErrorCode.INTERNAL_SERVER_ERROR);
+			throw new CustomException("error while fetching movie with id " + id, ErrorCode.INTERNAL_SERVER_ERROR);
 		}
 	}
 

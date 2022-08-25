@@ -18,22 +18,20 @@ public class MovieServiceImpl implements MovieService {
 
 	@Autowired
 	MovieDao movieDao;
-	
+
 	@Autowired
 	MovieRepository movieRepository;
-	
+
 	@Autowired
 	ModelMapper mapper;
-	
+
 	@Override
 	public List<Movie> getAllMovies() {
-		
+
 		List<Movie> allMovies = movieDao.getAllMovies();
-		if(allMovies==null)
-		{
+		if (allMovies == null) {
 			throw new CustomException("empty database", ErrorCode.NOT_FOUND);
-		}
-		else {
+		} else {
 			return allMovies;
 		}
 	}
@@ -42,27 +40,24 @@ public class MovieServiceImpl implements MovieService {
 	public Movie addMovie(MovieModel movieModel) {
 		Movie movie = null;
 		movie = movieRepository.findMovieByName(movieModel.getName());
-		
-		if(movie == null)
-		{
+
+		if (movie == null) {
 			Movie addMovie = mapper.map(movieModel, Movie.class);
 			return movieDao.addMovie(addMovie);
-		}
-		else {
-			throw new CustomException("movie with name "+movieModel.getName()+" already exists",ErrorCode.RESOURCE_ALREADY_EXISTS);
+		} else {
+			throw new CustomException("movie with name " + movieModel.getName() + " already exists",
+					ErrorCode.RESOURCE_ALREADY_EXISTS);
 		}
 	}
 
 	@Override
 	public Movie getMovieById(Long id) {
-		Movie movie =null;
+		Movie movie = null;
 		movie = movieDao.getMovieById(id);
-		
-		if(movie==null)
-		{
-			throw new CustomException("movie with id "+id+" is not available",ErrorCode.NOT_FOUND);
-		}
-		else {
+
+		if (movie == null) {
+			throw new CustomException("movie with id " + id + " is not available", ErrorCode.NOT_FOUND);
+		} else {
 			return movie;
 		}
 	}

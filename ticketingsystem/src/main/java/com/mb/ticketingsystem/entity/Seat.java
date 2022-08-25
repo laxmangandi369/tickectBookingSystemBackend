@@ -9,37 +9,38 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import io.swagger.v3.oas.models.security.SecurityScheme.In;
-
-
 @Entity
 @Table(name = "seats")
 public class Seat {
+
 	@Id
-	@Column(name="seatid")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long seatid;
-	
+	private Long seatId;
+
 	@Column
-	private Integer seatNo;
-	
+	private String seatNumber;
+
 	@Column
 	private Boolean isBooked;
-	
-	@ManyToOne
-	@JoinColumn(name="screenId", referencedColumnName = "screenid")
-	private Screen screen;
-	
-	@ManyToOne
-	@JoinColumn(name = "showId",referencedColumnName = "showid")
-	private ShowDetail showDetail;
 
-	public Integer getSeatNo() {
-		return seatNo;
+	@ManyToOne
+	@JoinColumn(name = "movie_id", referencedColumnName = "movieId")
+	private Movie movie;
+
+	public Long getSeatId() {
+		return seatId;
 	}
 
-	public void setSeatNo(Integer seatNo) {
-		this.seatNo = seatNo;
+	public void setSeatId(Long seatId) {
+		this.seatId = seatId;
+	}
+
+	public String getSeatNumber() {
+		return seatNumber;
+	}
+
+	public void setSeatNumber(String seatNumber) {
+		this.seatNumber = seatNumber;
 	}
 
 	public Boolean getIsBooked() {
@@ -50,25 +51,12 @@ public class Seat {
 		this.isBooked = isBooked;
 	}
 
-	public Screen getScreen() {
-		return screen;
+	public Movie getMovie() {
+		return movie;
 	}
 
-	public void setScreen(Screen screen) {
-		this.screen = screen;
+	public void setMovie(Movie movie) {
+		this.movie = movie;
 	}
 
-	public ShowDetail getShowDetail() {
-		return showDetail;
-	}
-
-	public void setShowDetail(ShowDetail showDetail) {
-		this.showDetail = showDetail;
-	}
-
-	public Long getSeatId() {
-		return seatid;
-	}
-	
-	
 }

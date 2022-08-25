@@ -1,7 +1,5 @@
 package com.mb.ticketingsystem.repository;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,11 +13,11 @@ import com.mb.ticketingsystem.entity.Seat;
 @Repository
 public interface SeatRepository extends JpaRepository<Seat, Long> {
 
-	@Query(value="SELECT * FROM seat WHERE showid = :showid" , nativeQuery = true)
-	List<Seat> findAllByMovieShow(@Param("showid") Long showid);
 	
 	@Transactional
 	@Modifying
 	@Query(value="UPDATE seat SET isbooked = true WHERE seatid = :seatid" , nativeQuery = true)
-	void bookSeat(@Param("seatid") Long seatId);
+	void bookSeat(@Param("seatid") Integer seatId);
+	
+	Seat findSeatBySeatNumber(String seatNumber);
 }

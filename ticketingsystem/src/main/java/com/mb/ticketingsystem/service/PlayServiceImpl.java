@@ -15,16 +15,16 @@ import com.mb.ticketingsystem.repository.PlayRepository;
 
 @Service
 public class PlayServiceImpl implements PlayService {
-	
+
 	@Autowired
 	private PlayDao playDao;
-	
+
 	@Autowired
 	private PlayRepository playrepository;
-	
+
 	@Autowired
 	ModelMapper mapper;
-	
+
 	@Override
 	public List<Play> getAllPlays() {
 		try {
@@ -36,27 +36,25 @@ public class PlayServiceImpl implements PlayService {
 
 	@Override
 	public Play savePlay(PlayModel playModel) {
-			Play theater =null;
-			theater = playrepository.findByName(playModel.getName());
-			if(theater == null)
-			{
-				Play toSave = mapper.map(playModel, Play.class);
-				return playDao.saveTheatre(toSave);
-			}
-			else {
-				throw new CustomException(playModel.getName()+" already registered in database",ErrorCode.RESOURCE_ALREADY_EXISTS);
-			}
+		Play theater = null;
+		theater = playrepository.findByName(playModel.getName());
+		if (theater == null) {
+			Play toSave = mapper.map(playModel, Play.class);
+			return playDao.saveTheatre(toSave);
+		} else {
+			throw new CustomException(playModel.getName() + " already registered in database",
+					ErrorCode.RESOURCE_ALREADY_EXISTS);
+		}
 	}
 
 	@Override
 	public Play getPlayById(Long id) {
 		Play play = null;
 		play = playDao.getTheaterById(id);
-		if(play==null)
-		{
-			throw new CustomException("couldnot find the id "+id, ErrorCode.NOT_FOUND);
-		}
-		else {
+//		play = playrepository.findById(id).get();
+		if (play == null) {
+			throw new CustomException("couldnot find the id " + id, ErrorCode.NOT_FOUND);
+		} else {
 			return play;
 		}
 	}

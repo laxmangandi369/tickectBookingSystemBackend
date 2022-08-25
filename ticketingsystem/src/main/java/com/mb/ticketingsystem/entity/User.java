@@ -13,9 +13,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "users")
 public class User {
 
-	
 	@Id
-	@Column(name="userid")
+	@Column(name = "userid")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long userid;
 
@@ -86,9 +85,8 @@ public class User {
 		this.passWord = passWord;
 	}
 
-	public Long getId() {
+	public Long getUserId() {
 		return userid;
 	}
-	
-	
+
 }

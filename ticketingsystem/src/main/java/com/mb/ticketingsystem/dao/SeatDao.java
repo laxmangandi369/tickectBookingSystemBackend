@@ -2,9 +2,11 @@ package com.mb.ticketingsystem.dao;
 
 import java.util.List;
 
-import com.mb.ticketingsystem.model.SeatModel;
+import com.mb.ticketingsystem.entity.Seat;
 
 public interface SeatDao {
-	public List<SeatModel> getListOfSeats(Long showid);
-	public List<SeatModel> reserveSeat(List<SeatModel> seats);
+
+	public List<Seat> getListOfSeats();
+	public Seat reserveSeats(Seat seat);
+	public Seat getSeatBySeatNumber(String seatNumber);
 }

@@ -3,7 +3,6 @@ package com.mb.ticketingsystem.service;
 import java.util.List;
 import java.util.Objects;
 
-import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +16,8 @@ import com.mb.ticketingsystem.model.LoginModel;
 import com.mb.ticketingsystem.model.SignupModel;
 import com.mb.ticketingsystem.repository.UserRepository;
 
-
 @Service
 public class UserServiceImpl implements UserService {
-
 
 	@Autowired
 	private ModelMapper mapper;
@@ -33,13 +30,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User registerUser(SignupModel userSignup) {
-		if (userDao.findUserByEmail(userSignup.getEmail())!=null) {
+		if (userDao.findUserByEmail(userSignup.getEmail()) != null) {
 			throw new CustomException("User already registered with " + userSignup.getEmail() + " address.",
 					ErrorCode.RESOURCE_ALREADY_EXISTS);
 		} else {
 
 			User user = new User();
-
 
 			user = mapper.map(userSignup, User.class);
 
@@ -52,29 +48,25 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User login( LoginModel user) {
-		
-			User isRegistered = userDao.findUserByEmail(user.getEmail());
-			
-			if(isRegistered!=null && Objects.equals(isRegistered.getPassWord(), user.getPassword()))
-			{
-				return isRegistered;
-			}
-			else {
-				throw new CustomException("user not registered",ErrorCode.BAD_REQUEST);
-			}
+	public User login(LoginModel user) {
+
+		User isRegistered = userDao.findUserByEmail(user.getEmail());
+
+		if (isRegistered != null && Objects.equals(isRegistered.getPassWord(), user.getPassword())) {
+			return isRegistered;
+		} else {
+			throw new CustomException("user not registered", ErrorCode.BAD_REQUEST);
+		}
 
 	}
 
 	@Override
 	public List<User> getAllUsers() {
-		List<User> allUsers =null;
-		allUsers= userRepository.findAll();
-		if(allUsers!=null)
-		{
+		List<User> allUsers = null;
+		allUsers = userRepository.findAll();
+		if (allUsers != null) {
 			return allUsers;
-		}
-		else {
+		} else {
 			throw new CustomException("no user found", ErrorCode.NOT_FOUND);
 
 		}
