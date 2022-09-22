@@ -1,6 +1,5 @@
 package com.mb.ticketingsystem.entity;
 
-import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -31,8 +29,8 @@ public class Booking {
 	@JoinColumn(name = "movie_id", referencedColumnName = "movieid")
 	private Movie movie;
 
-	@Column
-	private Seat[] seats;
+//	@Column
+//	private Seat[] seats;
 
 	@Column
 	private String[] bookingSeats;
@@ -77,12 +75,12 @@ public class Booking {
 		this.movie = movie;
 	}
 
-	public Seat[] getSeats() {
-		return seats;
-	}
-
-	public void setSeats(Seat[] seats) {
-		this.seats = seats;
-	}
+//	public Seat[] getSeats() {
+//		return seats;
+//	}
+//
+//	public void setSeats(Seat[] seats) {
+//		this.seats = seats;
+//	}
 
 }

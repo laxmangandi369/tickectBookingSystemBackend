@@ -13,7 +13,7 @@ public class BookingModel {
 	
 	private Long movieId;
 	
-	private String[] seatNumbers;
+//	private String[] seatNumbers;
 	
 	private String[] bookingSeats;
 
@@ -41,13 +41,13 @@ public class BookingModel {
 		this.movieId = movieId;
 	}
 
-	public String[] getSeatNumbers() {
-		return seatNumbers;
-	}
-
-	public void setSeatNumbers(String[] seatNumbers) {
-		this.seatNumbers = seatNumbers;
-	}
+//	public String[] getSeatNumbers() {
+//		return seatNumbers;
+//	}
+//
+//	public void setSeatNumbers(String[] seatNumbers) {
+//		this.seatNumbers = seatNumbers;
+//	}
 
 	public String[] getBookingSeats() {
 		return bookingSeats;

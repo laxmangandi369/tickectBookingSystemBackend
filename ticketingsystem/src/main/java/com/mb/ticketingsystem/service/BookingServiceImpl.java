@@ -51,24 +51,27 @@ public class BookingServiceImpl implements BookingService {
 					ErrorCode.NOT_FOUND);
 		}
 
-		Seat[] seat = new Seat[bookingModel.getSeatNumbers().length];
-		for (int i = 0; i < bookingModel.getSeatNumbers().length; i++) {
-			Seat singleSeat = null;
-			singleSeat = seatService.getSeatBySeatNumber(bookingModel.getSeatNumbers()[i]);
-			if (singleSeat.getSeatNumber() == null) {
-				SeatModel seatModel = new SeatModel();
-				seatModel.setIsBooked(true);
-				seatModel.setMovieId(bookingModel.getMovieId());
-				seatModel.setSeatNumber(bookingModel.getSeatNumbers()[i]);
+//		Seat[] seat = new Seat[bookingModel.getSeatNumbers().length];
+//		for (int i = 0; i < bookingModel.getSeatNumbers().length; i++) {
+//			Seat singleSeat = null;
+//			singleSeat = seatService.getSeatBySeatNumber(bookingModel.getSeatNumbers()[i]);
+//			if (singleSeat.getSeatNumber() == null) {
+//				SeatModel seatModel = new SeatModel();
+//				seatModel.setIsBooked(true);
+//				seatModel.setMovieId(bookingModel.getMovieId());
+//				seatModel.setSeatNumber(bookingModel.getSeatNumbers()[i]);
+//
+//				seat[i] = seatService.reserveSeat(seatModel);
+//
+//			}
+//		}
 
-				seat[i] = seatService.reserveSeat(seatModel);
-
-			}
-		}
-
-		Booking toAddBooking;
-		toAddBooking = mapper.map(bookingModel, Booking.class);
-		toAddBooking.setSeats(seat);
+		Booking toAddBooking= new Booking();
+//		toAddBooking = mapper.map(bookingModel, Booking.class);
+		toAddBooking.setCustomerName(bookingModel.getCustomerName());
+		toAddBooking.setEmail(bookingModel.getEmail());
+		toAddBooking.setBookingSeats(bookingModel.getBookingSeats());
+//		toAddBooking.setSeats(seat);
 		toAddBooking.setMovie(movie);
 
 		return bookingDao.addBooking(toAddBooking);
@@ -83,6 +86,20 @@ public class BookingServiceImpl implements BookingService {
 			return reservedSeats;
 		} else {
 			throw new CustomException("no reserved seats found ", ErrorCode.NOT_FOUND);
+		}
+	}
+
+	@Override
+	public List<Booking> getReservedSeatsDesc(Long movieId) {
+		List<Booking> reversedSeat=null;
+		reversedSeat = bookingDao.GetReservedSeatsDesc(movieId);
+		if(reversedSeat !=null)
+		{
+			return reversedSeat;
+		}
+		else
+		{
+			throw new CustomException("no reserved seat found", ErrorCode.NOT_FOUND);
 		}
 	}
 

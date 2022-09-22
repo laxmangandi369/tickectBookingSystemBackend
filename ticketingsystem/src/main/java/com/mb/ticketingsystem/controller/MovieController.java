@@ -6,6 +6,7 @@ import javax.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,13 +21,14 @@ import com.mb.ticketingsystem.model.SuccessResponse;
 import com.mb.ticketingsystem.service.MovieService;
 
 @RestController
-@RequestMapping("api/movie")
+@RequestMapping("api/movies")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class MovieController {
 	
 	@Autowired
 	MovieService movieService;
 	
+	@PreAuthorize("hasAnyRole('ADMIN','USER')")
 	@GetMapping
 	public ResponseEntity<SuccessResponse> getAllMovies()
 	{
@@ -38,6 +40,7 @@ public class MovieController {
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping
 	public ResponseEntity<SuccessResponse> saveMovies(@RequestBody @Valid MovieModel movieModel)
 	{
@@ -49,6 +52,7 @@ public class MovieController {
 		return new ResponseEntity<>(response,HttpStatus.OK);
 
 	}
+	@PreAuthorize("hasAnyRole('ADMIN','USER')")
 	@GetMapping("/{id}")
 	public ResponseEntity<SuccessResponse> getMovieById(@PathVariable("id") Long id)
 	{

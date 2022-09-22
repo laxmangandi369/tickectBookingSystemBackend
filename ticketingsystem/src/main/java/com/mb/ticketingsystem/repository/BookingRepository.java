@@ -13,5 +13,7 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
 
 	@Query(value = "SELECT * FROM ticketingsystem.movie_bookings where movie_id=(?1)", nativeQuery = true)
 	List<Booking> findReservedSeats(Long id);
-
+	
+	@Query(value = "SELECT * FROM ticketingsystem.movie_bookings where movie_id=(?1) ORDER BY movie_id desc", nativeQuery = true)
+	List<Booking> findAllOrderByIdDesc(Long id);
 }

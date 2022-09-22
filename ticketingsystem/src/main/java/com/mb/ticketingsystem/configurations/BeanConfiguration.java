@@ -1,13 +1,17 @@
 package com.mb.ticketingsystem.configurations;
 
-import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.mb.ticketingsystem.security.UserDetailsServiceImpl;
 
 @Configuration
 public class BeanConfiguration {
+	
 	@Bean
 	public ModelMapper modelMapper() {
 		ModelMapper mapper = new ModelMapper();
@@ -16,6 +20,14 @@ public class BeanConfiguration {
 		return mapper;
 	}
 	
+	@Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 	
-	
+	@Bean
+	public UserDetailsService userDetailsService() {
+		return new UserDetailsServiceImpl();
+	}
+
 }

@@ -10,5 +10,6 @@ public interface BookingService {
 	public List<Booking> getAllBookings();
 	public Booking addBooking(BookingModel bookingModel);
 	public List<Booking> getReservdSeats(Long movidId);
+	public List<Booking> getReservedSeatsDesc(Long movieId);
 	
 }

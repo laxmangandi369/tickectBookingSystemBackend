@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mb.ticketingsystem.entity.Booking;
-import com.mb.ticketingsystem.entity.Seat;
 import com.mb.ticketingsystem.exception.CustomException;
 import com.mb.ticketingsystem.exception.ErrorCode;
 import com.mb.ticketingsystem.repository.BookingRepository;
@@ -32,7 +31,6 @@ public class BookingDaoImpl implements BookingDao {
 		try {
 			return bookingRepository.save(booking);
 		} catch (Exception e) {
-			System.out.println(e);
 			throw new CustomException("error while booking with booking id " + booking.getBookingId(),
 					ErrorCode.INTERNAL_SERVER_ERROR);
 		}
@@ -49,9 +47,15 @@ public class BookingDaoImpl implements BookingDao {
 	}
 
 	@Override
-	public List<Seat> testGetReservedSeats(Long movieId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Booking> GetReservedSeatsDesc(Long movieId) {
+		try {
+			return bookingRepository.findAllOrderByIdDesc(movieId);
+		}
+		catch (Exception e) {
+			throw new CustomException("error while retriving descending seat data", ErrorCode.INTERNAL_SERVER_ERROR);
+		}
 	}
+
+	
 
 }

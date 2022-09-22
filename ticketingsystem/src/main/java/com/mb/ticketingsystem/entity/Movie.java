@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Movie {
 
 	@Id
-	@Column(name = "movieid")
+	@Column(name = "movieid", nullable = false, updatable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long movieid;
 
