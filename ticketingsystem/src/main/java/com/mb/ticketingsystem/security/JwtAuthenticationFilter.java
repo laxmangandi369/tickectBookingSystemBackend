@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
-import org.aspectj.weaver.NewConstructorTypeMunger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -39,7 +38,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			
 			if(StringUtils.isNotBlank(header) && header.startsWith("Bearer"))
 			{
-				String authToken = header.replace("Bearer", "");
+				String authToken = header.replace("Bearer ", "");
 				Claims claims = jwtTokenUtil.getJwtClaims(authToken);
 				
 				String userName = claims.getSubject(); 
@@ -48,7 +47,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 				{
 					UserDetails userDetails = detailsServiceImpl.loadUserByUsername(userName);
 					UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-																								userDetails, "", getAuthoritiesFromClaims(claims));
+																								userDetails, userDetails.getUsername(), getAuthoritiesFromClaims(claims));
 					
 					usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 					

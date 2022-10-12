@@ -25,10 +25,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsServiceImpl detailsServiceImpl;
 	
-	@Autowired
-	public void globalUserDetails(AuthenticationManagerBuilder builder) throws Exception
-	{
-		builder.userDetailsService(detailsServiceImpl).passwordEncoder(passwordEncoder);
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(detailsServiceImpl).passwordEncoder(passwordEncoder);
 	}
 	
 	@Bean

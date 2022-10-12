@@ -51,7 +51,7 @@ public class JwtTokenUtil {
 		
 		final List<String> authorities = authentication.getAuthorities().stream().map(GrantedAuthority :: getAuthority).collect(Collectors.toList());
 		
-		return Jwts.builder().claim("userName", user.getUsername()).claim("aurhority", user.getAuthorities())
+		return Jwts.builder().claim("userName", user.getUsername()).claim("role", authorities)
 				.setSubject(user.getUsername()).setIssuedAt(new Date(System.currentTimeMillis())).setExpiration(new Date(getTokenValidation()))
 				.signWith(SignatureAlgorithm.HS512,SIGNING_KEY).compact();
 	}
